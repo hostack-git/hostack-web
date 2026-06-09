@@ -22,14 +22,11 @@ export default async function handler(req, res) {
         email,
         propertyName,
         propertyType,
-        beds,
-        country,
-        currentTools,
+        teamSize,
         biggestChallenge,
-        howHeard,
     } = req.body || {};
 
-    if (!email || !contactName || !propertyName || !beds || !country) {
+    if (!email || !contactName || !propertyName) {
         return res.status(400).json({ error: 'Missing required fields' });
     }
 
@@ -38,11 +35,11 @@ export default async function handler(req, res) {
         email,
         property_name: propertyName,
         property_type: propertyType || 'hostel',
-        beds,
-        country,
-        current_tools: currentTools || null,
+        beds: null,
+        country: null,
+        current_tools: teamSize || null,
         biggest_challenge: biggestChallenge || null,
-        how_heard: howHeard || null,
+        how_heard: null,
     });
 
     if (error) {
