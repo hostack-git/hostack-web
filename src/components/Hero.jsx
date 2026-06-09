@@ -1,19 +1,18 @@
-import { COLORS, FONTS, TYPOGRAPHY } from '../data/tokens'
-import { CONTENT } from '../data/tokens'
+import { COLORS, FONTS, TYPOGRAPHY, CONTENT } from '../data/tokens'
 
 export default function Hero({ bp }) {
   const isMobile = bp === 'mobile'
   const isTablet = bp === 'tablet'
 
-  const handleScroll = (id) => {
-    const el = document.querySelector(id)
+  const handleScroll = (anchor) => {
+    const el = document.querySelector(anchor)
     if (el) el.scrollIntoView({ behavior: 'smooth' })
   }
 
   const containerStyle = {
     backgroundColor: COLORS.tealDeep,
     color: COLORS.surface,
-    padding: isMobile ? '80px 24px 60px' : isTablet ? '100px 32px 80px' : '120px 64px 100px',
+    padding: isMobile ? '80px 24px 64px' : isTablet ? '100px 32px 80px' : '120px 64px 100px',
     minHeight: 'calc(100vh - 56px)',
     display: 'flex',
     flexDirection: 'column',
@@ -26,10 +25,10 @@ export default function Hero({ bp }) {
   const badgeStyle = {
     fontSize: 12,
     fontWeight: 500,
-    letterSpacing: '0.08em',
+    letterSpacing: '0.10em',
     textTransform: 'uppercase',
     color: COLORS.neon,
-    marginBottom: 32,
+    marginBottom: 40,
     display: 'flex',
     alignItems: 'center',
     gap: 8,
@@ -41,23 +40,35 @@ export default function Hero({ bp }) {
     borderRadius: '50%',
     backgroundColor: COLORS.neon,
     display: 'inline-block',
+    flexShrink: 0,
+    animation: 'pulse-dot 2s ease-in-out infinite',
   }
 
   const h1Style = {
     ...TYPOGRAPHY.h1,
-    fontSize: isMobile ? 36 : isTablet ? 48 : 64,
+    fontSize: isMobile ? 32 : isTablet ? 44 : 56,
     fontWeight: 300,
-    marginBottom: 24,
-    lineHeight: 1.1,
-    maxWidth: isMobile ? '100%' : '900px',
+    color: COLORS.surface,
+    marginBottom: 16,
+    lineHeight: 1.12,
+    maxWidth: isMobile ? '100%' : '860px',
+  }
+
+  const h2Style = {
+    ...TYPOGRAPHY.h2,
+    fontSize: isMobile ? 22 : isTablet ? 28 : 34,
+    fontWeight: 400,
+    color: COLORS.neon,
+    marginBottom: 28,
+    maxWidth: isMobile ? '100%' : '700px',
   }
 
   const subStyle = {
-    fontSize: isMobile ? 14 : isTablet ? 15 : 16,
-    lineHeight: 1.6,
-    color: 'rgba(255,255,255,0.75)',
-    marginBottom: 48,
-    maxWidth: isMobile ? '100%' : '720px',
+    fontSize: isMobile ? 15 : 17,
+    lineHeight: 1.65,
+    color: 'rgba(255,255,255,0.72)',
+    marginBottom: 52,
+    maxWidth: isMobile ? '100%' : '640px',
     fontFamily: FONTS.sans,
   }
 
@@ -70,13 +81,13 @@ export default function Hero({ bp }) {
   }
 
   const primaryButtonStyle = {
-    padding: isMobile ? '14px 20px' : '14px 28px',
+    padding: isMobile ? '14px 20px' : '14px 32px',
     backgroundColor: COLORS.neon,
     color: COLORS.teal,
     border: 'none',
     borderRadius: 4,
-    fontSize: 14,
-    fontWeight: 600,
+    fontSize: 15,
+    fontWeight: 700,
     cursor: 'pointer',
     transition: 'all 0.2s ease',
     fontFamily: FONTS.sans,
@@ -87,170 +98,91 @@ export default function Hero({ bp }) {
     padding: isMobile ? '14px 20px' : '14px 28px',
     backgroundColor: 'transparent',
     color: COLORS.neon,
-    border: `2px solid ${COLORS.neon}`,
+    border: `1.5px solid rgba(74,248,212,0.5)`,
     borderRadius: 4,
-    fontSize: 14,
-    fontWeight: 600,
+    fontSize: 15,
+    fontWeight: 500,
     cursor: 'pointer',
     transition: 'all 0.2s ease',
     fontFamily: FONTS.sans,
     width: isMobile ? '100%' : 'auto',
   }
 
-  const statsContainerStyle = {
-    display: 'grid',
-    gridTemplateColumns: isMobile ? '1fr' : isTablet ? 'repeat(3, 1fr)' : 'repeat(3, 1fr)',
-    gap: isMobile ? 24 : 32,
+  const statsRowStyle = {
+    display: 'flex',
+    gap: 0,
+    flexDirection: isMobile ? 'column' : 'row',
     width: isMobile ? '100%' : 'auto',
-    maxWidth: '800px',
+    maxWidth: '700px',
+    borderTop: `1px solid rgba(74,248,212,0.15)`,
+    paddingTop: 40,
   }
 
-  const statCardStyle = {
+  const statItemStyle = {
+    flex: 1,
     display: 'flex',
     flexDirection: 'column',
     alignItems: isMobile ? 'flex-start' : 'center',
-    padding: isMobile ? '20px 0' : '24px',
-    borderBottom: isMobile ? `1px solid ${COLORS.neonSoft}` : 'none',
-    borderRight: !isMobile && true ? `1px solid ${COLORS.neonSoft}` : 'none',
+    padding: isMobile ? '16px 0' : '0 32px',
+    borderRight: !isMobile ? `1px solid rgba(74,248,212,0.15)` : 'none',
+    borderBottom: isMobile ? `1px solid rgba(74,248,212,0.10)` : 'none',
+    gap: 6,
   }
-
-  const statValueStyle = {
-    fontSize: isMobile ? 32 : isTablet ? 40 : 48,
-    fontWeight: 300,
-    color: COLORS.neon,
-    marginBottom: 8,
-  }
-
-  const statLabelStyle = {
-    fontSize: isMobile ? 12 : 13,
-    color: 'rgba(255,255,255,0.65)',
-    lineHeight: 1.4,
-  }
-
-  const diagramContainerStyle = {
-    marginTop: 80,
-    padding: isMobile ? '40px 0' : isTablet ? '60px 0' : '80px 0',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-  }
-
-  const diagramStyle = {
-    display: 'flex',
-    alignItems: 'center',
-    gap: isMobile ? 16 : 32,
-    flexWrap: isMobile ? 'wrap' : 'nowrap',
-    justifyContent: 'center',
-  }
-
-  const appNodeStyle = {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    gap: 12,
-    minWidth: isMobile ? '80px' : '100px',
-  }
-
-  const appCircleStyle = {
-    width: isMobile ? 56 : 72,
-    height: isMobile ? 56 : 72,
-    borderRadius: '50%',
-    backgroundColor: COLORS.neon,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontSize: isMobile ? 20 : 28,
-    position: 'relative',
-    animation: 'pulse 2s ease-in-out infinite',
-  }
-
-  const appLabelStyle = {
-    fontSize: isMobile ? 11 : 12,
-    color: 'rgba(255,255,255,0.7)',
-    textAlign: 'center',
-    fontWeight: 500,
-  }
-
-  const arrowStyle = {
-    fontSize: isMobile ? 16 : 20,
-    color: COLORS.neon,
-    opacity: 0.5,
-    display: isMobile ? 'none' : 'block',
-  }
-
-  const mobileArrowStyle = {
-    fontSize: 20,
-    color: COLORS.neon,
-    opacity: 0.5,
-    display: isMobile ? 'block' : 'none',
-    transform: 'rotate(90deg)',
-  }
-
-  // SVG Icon Components
-  const SmartphoneIcon = () => (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: COLORS.teal }}>
-      <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
-      <path d="M12 17h.01"></path>
-    </svg>
-  )
-
-  const MonitorIcon = () => (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: COLORS.teal }}>
-      <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
-    </svg>
-  )
-
-  const BoltIcon = () => (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: COLORS.teal }}>
-      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-    </svg>
-  )
 
   return (
     <>
       <section style={containerStyle} id="hero">
         <div style={badgeStyle}>
-          <span style={neonDotStyle}></span>
-          Beta · Live at Torridon Estate · 23 beds
+          <span style={neonDotStyle} />
+          {CONTENT.hero.badge}
         </div>
 
-        <h1 style={h1Style}>
-          {CONTENT.hero.h1a}
-          <br />
-          so you can build the community you dream.
-        </h1>
+        <h1 style={h1Style}>{CONTENT.hero.h1}</h1>
+        <h2 style={h2Style}>{CONTENT.hero.h2}</h2>
 
         <p style={subStyle}>{CONTENT.hero.sub}</p>
 
         <div style={ctaContainerStyle}>
           <button
             style={primaryButtonStyle}
-            onMouseEnter={(e) => (e.target.style.opacity = '0.9')}
-            onMouseLeave={(e) => (e.target.style.opacity = '1')}
-            onClick={() => handleScroll('#founding-member')}
+            onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.9')}
+            onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
+            onClick={() => handleScroll(CONTENT.hero.ctaAnchor)}
           >
             {CONTENT.hero.cta}
           </button>
           <button
             style={secondaryButtonStyle}
-            onMouseEnter={(e) => (e.target.style.borderColor = 'rgba(74,248,212,0.8)')}
-            onMouseLeave={(e) => (e.target.style.borderColor = COLORS.neon)}
-            onClick={() => handleScroll('#product')}          >
-            {CONTENT.hero.ctaSub}
+            onMouseEnter={(e) => { e.currentTarget.style.borderColor = COLORS.neon; e.currentTarget.style.color = COLORS.neon }}
+            onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(74,248,212,0.5)'; e.currentTarget.style.color = COLORS.neon }}
+            onClick={() => handleScroll(CONTENT.hero.ctaSubAnchor)}
+          >
+            {CONTENT.hero.ctaSub} →
           </button>
         </div>
 
+        <div style={statsRowStyle}>
+          {CONTENT.hero.stats.map((stat, i) => (
+            <div
+              key={i}
+              style={{
+                ...statItemStyle,
+                borderRight: !isMobile && i < CONTENT.hero.stats.length - 1 ? `1px solid rgba(74,248,212,0.15)` : 'none',
+                paddingLeft: !isMobile && i === 0 ? 0 : (!isMobile ? 32 : 0),
+                paddingRight: !isMobile && i === CONTENT.hero.stats.length - 1 ? 0 : (!isMobile ? 32 : 0),
+              }}
+            >
+              <span style={{ fontSize: isMobile ? 22 : 26, fontWeight: 600, color: COLORS.neon, fontFamily: FONTS.sans }}>{stat.value}</span>
+              <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.55)', lineHeight: 1.4 }}>{stat.label}</span>
+            </div>
+          ))}
+        </div>
       </section>
 
       <style>{`
-        @keyframes pulse {
-          0%, 100% {
-            box-shadow: 0 0 0 0 rgba(74, 248, 212, 0.7);
-          }
-          50% {
-            box-shadow: 0 0 0 20px rgba(74, 248, 212, 0);
-          }
+        @keyframes pulse-dot {
+          0%, 100% { box-shadow: 0 0 0 0 rgba(74,248,212,0.6); }
+          50% { box-shadow: 0 0 0 6px rgba(74,248,212,0); }
         }
       `}</style>
     </>
