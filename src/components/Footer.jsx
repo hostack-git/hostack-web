@@ -26,59 +26,30 @@ export default function Footer({ bp }) {
   };
 
   return (
-    <footer
-      id="footer"
-      style={{
-        width: '100%',
-        backgroundColor: COLORS.tealDeep,
-        color: '#ffffff',
-        padding: bp === 'mobile' ? '48px 20px' : '64px 40px',
-      }}
-    >
+    <footer id="footer" style={{ width: '100%', backgroundColor: COLORS.tealDeep, color: '#ffffff', padding: bp === 'mobile' ? '48px 20px' : '64px 40px' }}>
       <div style={{ maxWidth: '960px', margin: '0 auto' }}>
-        {/* Logo + Tagline */}
         <div style={{ marginBottom: '48px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
             {logoSvg}
-            <span style={{ fontSize: '24px', fontWeight: '700', fontFamily: FONTS.sans, letterSpacing: '-0.01em' }}>
-              hostack
-            </span>
+            <span style={{ fontSize: '24px', fontWeight: '700', fontFamily: FONTS.sans, letterSpacing: '-0.01em' }}>hostack</span>
           </div>
-          <p style={{ fontSize: '14px', lineHeight: '1.6', color: 'rgba(255,255,255,0.7)', fontFamily: FONTS.sans, margin: '8px 0 0 0' }}>
-            {CONTENT.footer.tagline}
-          </p>
-          <p style={{ fontSize: '14px', lineHeight: '1.6', color: 'rgba(255,255,255,0.7)', fontFamily: FONTS.sans, margin: '4px 0 0 0' }}>
-            {CONTENT.footer.sub}
-          </p>
+          <p style={{ fontSize: '14px', lineHeight: '1.6', color: 'rgba(255,255,255,0.7)', fontFamily: FONTS.sans, margin: '8px 0 0 0' }}>{CONTENT.footer.tagline}</p>
+          <p style={{ fontSize: '14px', lineHeight: '1.6', color: 'rgba(255,255,255,0.55)', fontFamily: FONTS.sans, margin: '4px 0 0 0' }}>{CONTENT.footer.sub}</p>
         </div>
-
-        {/* Nav Links */}
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: bp === 'mobile' ? '16px 24px' : '32px', marginBottom: '32px', fontSize: '14px', fontFamily: FONTS.sans }}>
           {CONTENT.footer.links.map((link, idx) => (
-            <a
-              key={idx}
-              href={link.href}
-              onClick={(e) => handleLinkClick(e, link.href)}
-              style={{ color: 'rgba(255,255,255,0.8)', textDecoration: 'none', transition: 'color 0.2s' }}
+            <a key={idx} href={link.href} onClick={(e) => handleLinkClick(e, link.href)}
+              style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.2s' }}
               onMouseEnter={(e) => (e.target.style.color = COLORS.neon)}
-              onMouseLeave={(e) => (e.target.style.color = 'rgba(255,255,255,0.8)')}
-            >
+              onMouseLeave={(e) => (e.target.style.color = 'rgba(255,255,255,0.7)')}>
               {link.label}
             </a>
           ))}
         </div>
-
-        {/* Divider */}
-        <div style={{ width: '100%', height: '1px', backgroundColor: 'rgba(74,248,212,0.2)', marginBottom: '32px' }} />
-
-        {/* Copyright */}
-        <div style={{ display: 'flex', flexDirection: bp === 'mobile' ? 'column' : 'row', justifyContent: 'space-between', alignItems: bp === 'mobile' ? 'flex-start' : 'center', gap: bp === 'mobile' ? '16px' : '0' }}>
-          <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.6)', fontFamily: FONTS.sans, margin: 0 }}>
-            {CONTENT.footer.copyright}
-          </p>
-          <p style={{ fontSize: '13px', color: COLORS.neon, fontFamily: FONTS.sans, margin: 0, fontWeight: '500' }}>
-            {CONTENT.footer.available}
-          </p>
+        <div style={{ width: '100%', height: '1px', backgroundColor: 'rgba(74,248,212,0.15)', marginBottom: '32px' }} />
+        <div style={{ display: 'flex', flexDirection: bp === 'mobile' ? 'column' : 'row', justifyContent: 'space-between', alignItems: bp === 'mobile' ? 'flex-start' : 'center', gap: bp === 'mobile' ? '12px' : '0' }}>
+          <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.45)', fontFamily: FONTS.sans, margin: 0 }}>{CONTENT.footer.copyright}</p>
+          <p style={{ fontSize: '13px', color: COLORS.neon, fontFamily: FONTS.sans, margin: 0, fontWeight: '500' }}>{CONTENT.footer.available}</p>
         </div>
       </div>
     </footer>

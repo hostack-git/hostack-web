@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { COLORS, FONTS } from '../data/tokens'
+import { COLORS, FONTS, CONTENT } from '../data/tokens'
 
 const NavLogo = () => (
   <svg width="32" height="32" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
@@ -9,9 +9,7 @@ const NavLogo = () => (
         <stop offset="100%" stopColor="#00BFB3" />
       </linearGradient>
     </defs>
-    {/* Rounded square background */}
     <rect x="0" y="0" width="256" height="256" rx="51.2" ry="51.2" fill="url(#navLogoGrad)"/>
-    {/* 2×2 grid mosaic — matches Hostack brand icon */}
     <rect x="38"  y="38"  width="82" height="82" rx="14" fill="rgba(255,255,255,0.90)"/>
     <rect x="136" y="38"  width="82" height="82" rx="14" fill="rgba(255,255,255,0.55)"/>
     <rect x="38"  y="136" width="82" height="82" rx="14" fill="rgba(255,255,255,0.55)"/>
@@ -25,15 +23,13 @@ export default function Nav({ bp }) {
   const isMobile = bp === 'mobile'
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 10)
-    }
+    const handleScroll = () => setScrolled(window.scrollY > 10)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const handleAnchorClick = (id) => {
-    const el = document.querySelector(id)
+  const handleAnchorClick = (anchor) => {
+    const el = document.querySelector(anchor)
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' })
       setIsOpen(false)
@@ -51,7 +47,6 @@ export default function Nav({ bp }) {
     justifyContent: 'space-between',
     padding: '0 24px',
     backgroundColor: scrolled ? COLORS.teal : 'transparent',
-    backdropFilter: scrolled ? 'none' : 'none',
     transition: 'background-color 0.3s ease',
     zIndex: 1000,
     fontFamily: FONTS.sans,
@@ -85,7 +80,7 @@ export default function Nav({ bp }) {
 
   const ctaButtonStyle = {
     padding: '8px 16px',
-    backgroundColor: scrolled ? COLORS.neon : COLORS.neon,
+    backgroundColor: COLORS.neon,
     color: COLORS.teal,
     border: 'none',
     borderRadius: 4,
@@ -156,75 +151,43 @@ export default function Nav({ bp }) {
         </div>
 
         <div style={navLinksStyle}>
-          <a
-            style={navLinkStyle}
-            onMouseEnter={(e) => (e.target.style.color = COLORS.neon)}
-            onMouseLeave={(e) => (e.target.style.color = scrolled ? COLORS.surface : COLORS.ink)}
-            onClick={() => handleAnchorClick('#product')}
-          >
-            How it works
-          </a>
-          <a
-            style={navLinkStyle}
-            onMouseEnter={(e) => (e.target.style.color = COLORS.neon)}
-            onMouseLeave={(e) => (e.target.style.color = scrolled ? COLORS.surface : COLORS.ink)}
-            onClick={() => handleAnchorClick('#results')}
-          >
-            Results
-          </a>
-          <a
-            style={navLinkStyle}
-            onMouseEnter={(e) => (e.target.style.color = COLORS.neon)}
-            onMouseLeave={(e) => (e.target.style.color = scrolled ? COLORS.surface : COLORS.ink)}
-            onClick={() => handleAnchorClick('#pricing')}
-          >
-            Pricing
-          </a>
+          {CONTENT.nav.links.map((link) => (
+            <a
+              key={link.anchor}
+              style={navLinkStyle}
+              onMouseEnter={(e) => (e.target.style.color = COLORS.neon)}
+              onMouseLeave={(e) => (e.target.style.color = scrolled ? COLORS.surface : COLORS.ink)}
+              onClick={() => handleAnchorClick(link.anchor)}
+            >
+              {link.label}
+            </a>
+          ))}
           <button
             style={ctaButtonStyle}
             onMouseEnter={(e) => (e.target.style.opacity = '0.9')}
             onMouseLeave={(e) => (e.target.style.opacity = '1')}
-            onClick={() => handleAnchorClick('#founding-member')}
+            onClick={() => handleAnchorClick(CONTENT.nav.ctaAnchor)}
           >
-            Join Founder Program
+            {CONTENT.nav.cta}
           </button>
         </div>
 
         <button style={hamburgerStyle} onClick={() => setIsOpen(!isOpen)}>
-          <div
-            style={{
-              ...hamburgerLineStyle,
-              transform: isOpen ? 'rotate(45deg) translateY(12px)' : 'rotate(0)',
-            }}
-          />
-          <div
-            style={{
-              ...hamburgerLineStyle,
-              opacity: isOpen ? 0 : 1,
-            }}
-          />
-          <div
-            style={{
-              ...hamburgerLineStyle,
-              transform: isOpen ? 'rotate(-45deg) translateY(-12px)' : 'rotate(0)',
-            }}
-          />
+          <div style={{ ...hamburgerLineStyle, transform: isOpen ? 'rotate(45deg) translateY(12px)' : 'rotate(0)' }} />
+          <div style={{ ...hamburgerLineStyle, opacity: isOpen ? 0 : 1 }} />
+          <div style={{ ...hamburgerLineStyle, transform: isOpen ? 'rotate(-45deg) translateY(-12px)' : 'rotate(0)' }} />
         </button>
       </nav>
 
       {isOpen && (
         <div style={mobileMenuStyle}>
-          <a style={mobileLinkStyle} onClick={() => handleAnchorClick('#product')}>
-            How it works
-          </a>
-          <a style={mobileLinkStyle} onClick={() => handleAnchorClick('#results')}>
-            Results
-          </a>
-          <a style={mobileLinkStyle} onClick={() => handleAnchorClick('#pricing')}>
-            Pricing
-          </a>
-          <button style={mobileCTAButtonStyle} onClick={() => handleAnchorClick('#founding-member')}>
-            Join Founder Program
+          {CONTENT.nav.links.map((link) => (
+            <a key={link.anchor} style={mobileLinkStyle} onClick={() => handleAnchorClick(link.anchor)}>
+              {link.label}
+            </a>
+          ))}
+          <button style={mobileCTAButtonStyle} onClick={() => handleAnchorClick(CONTENT.nav.ctaAnchor)}>
+            {CONTENT.nav.cta}
           </button>
         </div>
       )}
