@@ -156,7 +156,7 @@ export const CONTENT = {
     ],
     liveProof: {
       label: 'See the Staff App in action →',
-      href: '/demo',
+      href: 'https://demo.torridonia.com/staffapp/demo',
     },
     quote: {
       text: 'The dashboard is the first thing I check every morning. It tells me exactly what happened overnight and what needs my attention today. I don\'t need to ask anyone anything.',

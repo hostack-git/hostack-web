@@ -460,7 +460,7 @@ export default function Product({ bp }) {
             See it in action — no commitment required.
           </p>
           <button
-            onClick={() => { window.location.href = '/demo?ref=product' }}
+            onClick={() => { window.open('https://demo.torridonia.com/staffapp/demo', '_blank', 'noopener,noreferrer') }}
             onMouseEnter={e => { e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = COLORS.tealDeep; }}
             onMouseLeave={e => { e.currentTarget.style.background = COLORS.neon; e.currentTarget.style.color = COLORS.tealDeep; }}
             style={{

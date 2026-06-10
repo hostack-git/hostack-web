@@ -128,6 +128,8 @@ export default function CaseStudy({ bp }) {
         <div style={{ marginBottom: isMobile ? 32 : 44, textAlign: isMobile ? 'left' : 'center' }}>
           <a
             href={CONTENT.caseStudy.liveProof.href}
+            target="_blank"
+            rel="noopener noreferrer"
             style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontSize: 14, fontWeight: 600, color: COLORS.teal, textDecoration: 'none', padding: '11px 22px', border: `1.5px solid ${COLORS.teal}`, borderRadius: 6, transition: 'all 0.2s ease' }}
             onMouseEnter={e => { e.currentTarget.style.backgroundColor = COLORS.teal; e.currentTarget.style.color = '#fff' }}
             onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = COLORS.teal }}
