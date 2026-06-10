@@ -4,6 +4,7 @@ import LandingLayout from './components/LandingLayout'
 import LoginPage from './pages/LoginPage'
 import CommandCenter from './pages/CommandCenter'
 import AppConfigPage from './pages/AppConfigPage'
+import StaffAppDemo from './pages/StaffAppDemo'
 
 function ProtectedRoute({ session, loading, children }) {
   if (loading) {
@@ -153,6 +154,7 @@ export default function App() {
             />
           )
         })}
+        <Route path="/demo" element={<StaffAppDemo />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </>

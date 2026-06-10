@@ -155,8 +155,8 @@ export const CONTENT = {
       { value: '100',    sup: '%',   label: 'Team adoption — nobody dropped off',   desc: '12 rotating volunteers since launch. Every single person has used it from day one.' },
     ],
     liveProof: {
-      label: 'Staff app live at torridonia.com/staffapp',
-      href: 'https://torridonia.com/staffapp',
+      label: 'See the Staff App in action →',
+      href: '/demo',
     },
     quote: {
       text: 'The dashboard is the first thing I check every morning. It tells me exactly what happened overnight and what needs my attention today. I don\'t need to ask anyone anything.',
