@@ -156,11 +156,31 @@ export default function Apply({ bp }) {
         </div>
 
         {!submitted && (
-          <div style={{ textAlign: 'center', marginTop: 28 }}>
-            <a href={CONTENT.apply.calendlyHref} target="_blank" rel="noopener noreferrer"
-              style={{ fontSize: 14, color: 'rgba(255,255,255,0.55)', textDecoration: 'none', transition: 'color 0.2s ease' }}
-              onMouseEnter={e => (e.currentTarget.style.color = COLORS.neon)}
-              onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.55)')}>
+          <div style={{ textAlign: 'center', marginTop: 20 }}>
+            <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.40)', marginBottom: 14 }}>
+              Prefer to talk first?
+            </p>
+            <a
+              href={CONTENT.apply.calendlyHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 8,
+                fontSize: 14,
+                fontWeight: 600,
+                color: COLORS.neon,
+                textDecoration: 'none',
+                padding: '12px 28px',
+                border: `1.5px solid ${COLORS.neon}`,
+                borderRadius: 6,
+                transition: 'all 0.2s ease',
+                fontFamily: FONTS.sans,
+              }}
+              onMouseEnter={e => { e.currentTarget.style.backgroundColor = COLORS.neon; e.currentTarget.style.color = COLORS.tealDeep }}
+              onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = COLORS.neon }}
+            >
               {CONTENT.apply.calendlyLabel} →
             </a>
           </div>

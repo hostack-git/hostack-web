@@ -60,8 +60,11 @@ export default function Nav({ bp }) {
     display: 'flex',
     alignItems: 'center',
     gap: 8,
-    transition: 'color 0.3s ease',
+    transition: 'color 0.3s ease, background-color 0.3s ease, padding 0.3s ease, border-radius 0.3s ease',
     cursor: 'pointer',
+    backgroundColor: scrolled ? 'transparent' : '#ffffff',
+    padding: scrolled ? '0' : '6px 12px 6px 6px',
+    borderRadius: scrolled ? 0 : 10,
   }
 
   const navLinksStyle = {

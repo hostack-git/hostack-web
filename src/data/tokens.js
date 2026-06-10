@@ -227,7 +227,7 @@ export const CONTENT = {
     ctaPrimary: 'Apply for Co-Build',
     ctaPrimaryAnchor: '#apply',
     ctaSecondary: 'Book a discovery call',
-    ctaSecondaryHref: 'https://calendly.com/jorgebtco/cobu',
+    ctaSecondaryHref: 'https://calendly.com/hostack/discovering',
   },
 
   apply: {
@@ -239,8 +239,8 @@ export const CONTENT = {
     formButtonLabel: 'Send application',
     successTitle: 'Application received.',
     successBody: 'We\'ll review it personally and reach out within 48 hours with next steps or a proposal.',
-    calendlyLabel: 'Prefer to talk first? Book a 30-min discovery call',
-    calendlyHref: 'https://calendly.com/jorgebtco/cobu',
+    calendlyLabel: 'Book a 30-min discovery call',
+    calendlyHref: 'https://calendly.com/hostack/discovering',
   },
 
   footer: {
